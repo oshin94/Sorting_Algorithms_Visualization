@@ -30,6 +30,7 @@ window.onload = function(){
 function bubble_sort(){
 	swapd=true;
 	
+	speed = document.getElementById("speed").value;
 	runLoop = async () => {
 		k=0
 		m=0
@@ -39,7 +40,7 @@ function bubble_sort(){
 			m++
 			for(var j=0; j<num_of_bar; j++){
 				m++
-				await new Promise( resolve => setTimeout( resolve, 1 ) )
+				await new Promise( resolve => setTimeout( resolve, speed ) )
 				if ((j+1)<num_of_bar && height[j]>height[j+1]){
 					ele = document.getElementById(j);
 					console.log("\nelement before change: ",ele);
@@ -82,7 +83,8 @@ function bubble_sort(){
 
 
 function insertion_sort(){
-
+	speed = document.getElementById("speed").value;
+	console.log("Speed is: ",speed);
 	runLoop = async () => {
 		k=0
 		//for i in range(1, len(x)-1):
@@ -93,7 +95,7 @@ function insertion_sort(){
 			for (var j=i;j>0;j--){
 				k++
 				console.log("j is: ", j)
-				await new Promise( resolve => setTimeout( resolve, 1 ) )
+				await new Promise( resolve => setTimeout( resolve, speed ) )
 				if (height[j]<height[j-1]){
 					ele = document.getElementById(j);
 					console.log("\nelement before change: ",ele);
