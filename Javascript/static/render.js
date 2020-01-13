@@ -153,16 +153,54 @@ svg = document.getElementsByTagName('svg')[0]; //Get svg element
 		height.push(h);
 		ele = document.getElementById(i);
 		console.log("\nelement before change: ",ele);
-		//var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect'); //Create a path in SVG's namespace
-		//newElement.setAttribute("width",act_width_of_bar);
 		ele.setAttribute("height",h);
-		//newElement.setAttribute("x",i);
 		ele.setAttribute("y",y);
-		//newElement.setAttribute("style","fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0)");
-		//newElement.setAttribute("id",id);
-		//svg.appendChild(newElement);
-		//id++;
 	}
+}
+
+function selection_sort(){
+	speed = document.getElementById("speed").value;
+	console.log("Speed is: ",speed);
+	runLoop = async () => {
+		let k=0
+		for (let i = 0; i<num_of_bar;i++){
+			let index = i;
+			let low = height[i];
+			k++;
+			//console.log("\nIteration: ", i);
+			let lower = document.getElementById(i);
+			let low_x = lower.getAttribute("x");
+			let low_id = lower.getAttribute("id")
+			let higher = document.getElementById(i);
+			
+			for (let j = i; j<num_of_bar;j++){
+				k++
+				//console.log("j: ", j)
+				await new Promise( resolve => setTimeout( resolve, speed ) )
+				if (height[j]<low){
+					low = height[j];
+					index = j;
+					lower = document.getElementById(index);
+					low_x = lower.getAttribute("x");
+					low_id = lower.getAttribute("id")
+				}
+			}
+			
+			
+			height[index] = height[i];
+			lower.setAttribute("x", higher.getAttribute("x"));
+			lower.setAttribute("id", higher.getAttribute("id"));
+			
+			height[i] = low;
+			higher.setAttribute("x", low_x);
+			higher.setAttribute("id", low_id);
+		}
+		let l = document.getElementById("info");
+		l.innerHTML = "The bars have been Selection Sorted in an ascending manner..!\n HURRAY...!!!\n Iterations: "+k;
+		console.log("The Sorted Array is: ", height);
+	}
+	runLoop();
+	
 }
 	
 
