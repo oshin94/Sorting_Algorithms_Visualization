@@ -3,4 +3,4 @@ A project where one can visualize sorting algorithms. Made using, javascript, py
 
 Bubble Sort and Insertion sort added
 
-Live Game: https://sites.google.com/view/snakeandapples/home
+Live demo: https://sites.google.com/view/sorting-algorithm-visual/home
